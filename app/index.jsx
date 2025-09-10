@@ -1,33 +1,51 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { useState } from "react";
+
+
+const pomodoro = [
+  {
+    id: "focus",
+    initialValue: 25,
+    image: require('./foco.png'),
+    display: "foco",
+  },
+  {
+    id: "short",
+    initialValue: 5,
+    image: require('./curto.png'),
+    display: "Pausa curta",
+  },
+  {
+    id: "long",
+    initialValue: 15,
+    image: require('./longo.png'),
+    display: "Pausa longa",
+  },
+];
 
 export default function Index() {
-
+  
+    const [timeType, setTimeType] = useState(pomodoro[0])
   return (
     <View style={styles.container}>
-     <Image source={require('./foco.png')} />
-
+     <Image source={timeType.image} />
+ 
      <View style={styles.actions}>
 
         <View style={styles.context}>
-          <Pressable style={styles.contextButtonActive}>
-            <Text style={styles.contextButtonText}>
-              Foco
-            </Text>
-          </Pressable>
+          {pomodoro.map(p => {
           <Pressable>
+            key={p.id}
+            style={ timeType.id === p.id ? styles.contextButtonActive : null}
             <Text style={styles.contextButtonText}>
-              Pausa curta
+              {p.display}
             </Text>
           </Pressable>
-          <Pressable>
-            <Text style={styles.contextButtonText}>
-              Pausa longa
-            </Text>
-          </Pressable>
+          })}
         </View>
 
         <Text style={styles.timer}>
-          25:00
+          { new Date(timeType.initialValue * 1000).toLocaleTimeString("pt-br", {minute: "2-digit", second: "2-digit"}) }
         </Text>
         <Pressable style={styles.button}>
           <Text style={styles.buttonText}>
