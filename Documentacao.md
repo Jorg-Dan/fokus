@@ -16,4 +16,4 @@
 
 # Principais comandos do terminal
 1. cd -> Muda o diretorio atual
-2.cls -> limpa o terminal
+2. cls -> limpa o terminal
