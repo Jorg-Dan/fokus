@@ -1,5 +1,6 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { useState } from "react";
+import { FokusButton } from "../components/FokusButton"
 
 
 const pomodoro = [
@@ -7,7 +8,7 @@ const pomodoro = [
     id: "focus",
     initialValue: 25,
     image: require('./foco.png'),
-    display: "foco",
+    display: "Foco",
   },
   {
     id: "short",
@@ -33,25 +34,23 @@ export default function Index() {
      <View style={styles.actions}>
 
         <View style={styles.context}>
-          {pomodoro.map(p => {
-          <Pressable>
+          {pomodoro.map(p => 
+          <Pressable
             key={p.id}
             style={ timeType.id === p.id ? styles.contextButtonActive : null}
+            onPress={() => setTimeType(p)}
+            >
             <Text style={styles.contextButtonText}>
               {p.display}
             </Text>
           </Pressable>
-          })}
+          )}
         </View>
 
         <Text style={styles.timer}>
           { new Date(timeType.initialValue * 1000).toLocaleTimeString("pt-br", {minute: "2-digit", second: "2-digit"}) }
         </Text>
-        <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>
-            Começar
-          </Text>
-        </Pressable>
+        <FokusButton />
      </View>
 
      <View style={styles.footer}>
