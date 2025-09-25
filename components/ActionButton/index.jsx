@@ -2,6 +2,7 @@ import { Pressable, StyleSheet, Text  } from 'react-native';
 
 export function ActionButton( { active, onPress, display } ) {
     return (
+      
         <Pressable
             style={ active ? styles.contextButtonActive : null}
             onPress={onPress}
@@ -11,6 +12,8 @@ export function ActionButton( { active, onPress, display } ) {
             </Text>
         </Pressable>
     );
+ 
+
 }
 
 const styles = StyleSheet.create(
