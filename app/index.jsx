@@ -1,5 +1,8 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { useState } from "react";
+import { ActionButton } from "../components/ActionButton";
+import { FokusButton } from "../components/FokusButton";
+import { Timer } from "../components/Timer";
 
 
 const pomodoro = [
@@ -24,8 +27,11 @@ const pomodoro = [
 ];
 
 export default function Index() {
-  
+
+
+
     const [timeType, setTimeType] = useState(pomodoro[0])
+
   return (
     <View style={styles.container}>
      <Image source={timeType.image} />
@@ -33,25 +39,20 @@ export default function Index() {
      <View style={styles.actions}>
 
         <View style={styles.context}>
-          {pomodoro.map(p => {
-          <Pressable>
-            key={p.id}
-            style={ timeType.id === p.id ? styles.contextButtonActive : null}
-            <Text style={styles.contextButtonText}>
-              {p.display}
-            </Text>
-          </Pressable>
-          })}
+          {pomodoro.map(p => 
+            <ActionButton 
+              key={p.id}
+              active={timeType.id === p.id}
+              onPress={() => setTimeType(p)}
+              display={p.display}
+            />
+          )}
         </View>
 
         <Text style={styles.timer}>
           { new Date(timeType.initialValue * 1000).toLocaleTimeString("pt-br", {minute: "2-digit", second: "2-digit"}) }
         </Text>
-        <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>
-            Começar
-          </Text>
-        </Pressable>
+        <FokusButton />
      </View>
 
      <View style={styles.footer}>
