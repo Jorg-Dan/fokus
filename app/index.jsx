@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { ActionButton } from "../components/ActionButton";
 import { FokusButton } from "../components/FokusButton";
@@ -27,10 +27,28 @@ const pomodoro = [
 
 export default function Index() {
 
-    
-  
     const [timeType, setTimeType] = useState(pomodoro[0])
+    const timerRef = useRef(null) /*Precisamos informar o valor atual entre os ()*/ 
 
+    /* Função reponsável por verificar o estado atual do timer(cronometro) 
+    Se tiver acontecendo algo (current), você irá pausar.
+    Se não tiver acontecendo algo (null), você irá começar.
+    */ 
+    const togglerTimer = () => { 
+      if (timerRef.current) {
+        return
+      }
+
+      
+
+      /*timerRef -> current -> id/*
+
+
+
+    }
+
+
+ 
   return (
     <View style={styles.container}>
      <Image source={timeType.image} />
@@ -52,7 +70,9 @@ export default function Index() {
           { new Date(timeType.initialValue * 1000).toLocaleTimeString("pt-br", {minute: "2-digit", second: "2-digit"}) }
         </Text> */}
         <Timer totalSeconds={timeType.initialValue}/>
-        <FokusButton />
+        <FokusButton 
+          press={togglerTimer}
+        />
      </View>
 
      <View style={styles.footer}>
