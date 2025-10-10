@@ -20,3 +20,10 @@
 2. cls -> Limpa o terminal.
 3. cd .. -> Volta uma pasta.
 
+# Métodos, propriedades e hooks do Timer.
+1. useRef
+2. setInterval()
+3. clearInterval()
+4. current
+
+
