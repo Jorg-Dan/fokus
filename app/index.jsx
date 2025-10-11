@@ -1,7 +1,8 @@
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
-import { useState } from "react";
-import { FokusButton } from "../components/FokusButton"
-
+import { useRef, useState } from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
+import { ActionButton } from "../components/ActionButton";
+import { FokusButton } from "../components/FokusButton";
+import { Timer } from "../components/Timer";
 
 const pomodoro = [
   {
@@ -25,8 +26,29 @@ const pomodoro = [
 ];
 
 export default function Index() {
-  
+
     const [timeType, setTimeType] = useState(pomodoro[0])
+    const timerRef = useRef(null) /*Precisamos informar o valor atual entre os ()*/ 
+
+    /* Função reponsável por verificar o estado atual do timer(cronometro) 
+    Se tiver acontecendo algo (current), você irá pausar.
+    Se não tiver acontecendo algo (null), você irá começar.
+    */ 
+    const togglerTimer = () => { 
+      if (timerRef.current) {
+        return
+      }
+
+      
+
+      /*timerRef -> current -> id/*
+
+
+
+    }
+
+
+ 
   return (
     <View style={styles.container}>
      <Image source={timeType.image} />
@@ -35,22 +57,22 @@ export default function Index() {
 
         <View style={styles.context}>
           {pomodoro.map(p => 
-          <Pressable
-            key={p.id}
-            style={ timeType.id === p.id ? styles.contextButtonActive : null}
-            onPress={() => setTimeType(p)}
-            >
-            <Text style={styles.contextButtonText}>
-              {p.display}
-            </Text>
-          </Pressable>
+            <ActionButton 
+              key={p.id}
+              active={timeType.id === p.id}
+              onPress={() => setTimeType(p)}
+              display={p.display}
+            />
           )}
         </View>
 
-        <Text style={styles.timer}>
+        {/* <Text style={styles.timer}>
           { new Date(timeType.initialValue * 1000).toLocaleTimeString("pt-br", {minute: "2-digit", second: "2-digit"}) }
-        </Text>
-        <FokusButton />
+        </Text> */}
+        <Timer totalSeconds={timeType.initialValue}/>
+        <FokusButton 
+          press={togglerTimer}
+        />
      </View>
 
      <View style={styles.footer}>
