@@ -41,7 +41,7 @@ export default function Index() {
 
       
 
-      /*timerRef -> current -> id/*
+      //timerRef -> current -> id
 
 
 
@@ -55,7 +55,7 @@ export default function Index() {
  
      <View style={styles.actions}>
 
-        <View style={styles.context}>
+      <View style={styles.context}>
           {pomodoro.map(p => 
             <ActionButton 
               key={p.id}
@@ -66,12 +66,13 @@ export default function Index() {
           )}
         </View>
 
-        {/* <Text style={styles.timer}>
+        { <Text style={styles.timer}>
           { new Date(timeType.initialValue * 1000).toLocaleTimeString("pt-br", {minute: "2-digit", second: "2-digit"}) }
-        </Text> */}
+        </Text> }
         <Timer totalSeconds={timeType.initialValue}/>
         <FokusButton 
           press={togglerTimer}
+          title={timerRef.current ? "Pausar" : "Começar"}
         />
      </View>
 
@@ -84,8 +85,8 @@ export default function Index() {
       </Text>
      </View>
     </View>
-  );
-}
+  )
+};
 
 const styles = StyleSheet.create(
   {
