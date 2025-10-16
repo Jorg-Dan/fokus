@@ -41,7 +41,11 @@ export default function Index() {
 
       
 
+<<<<<<< HEAD
       //timerRef -> current -> id
+=======
+      /*timerRef -> current -> id/*
+>>>>>>> 97df46efa9a881495623209cb7771b0b5c7140b1
 
 
 
@@ -66,6 +70,7 @@ export default function Index() {
           )}
         </View>
 
+<<<<<<< HEAD
         { <Text style={styles.timer}>
           { new Date(timeType.initialValue * 1000).toLocaleTimeString("pt-br", {minute: "2-digit", second: "2-digit"}) }
         </Text> }
@@ -73,6 +78,14 @@ export default function Index() {
         <FokusButton 
           press={togglerTimer}
           title={timerRef.current ? "Pausar" : "Começar"}
+=======
+        {/* <Text style={styles.timer}>
+          { new Date(timeType.initialValue * 1000).toLocaleTimeString("pt-br", {minute: "2-digit", second: "2-digit"}) }
+        </Text> */}
+        <Timer totalSeconds={timeType.initialValue}/>
+        <FokusButton 
+          press={togglerTimer}
+>>>>>>> 97df46efa9a881495623209cb7771b0b5c7140b1
         />
      </View>
 
