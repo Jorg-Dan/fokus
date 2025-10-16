@@ -1,9 +1,11 @@
-import {  Pressable, StyleSheet, Text,  } from "react-native";
+import { Pressable, StyleSheet, Text, } from "react-native";
 
+export const FokusButton = ( { press } ) => {
 export const FokusButton = ( { press, title } ) => {
     return (
         <Pressable style={styles.button} onPress={press}>
             <Text style={styles.buttonText}>
+                Começar
                 {title}
             </Text>
         </Pressable>
@@ -25,3 +27,4 @@ const styles = StyleSheet.create(
     },
   }
 );
+}
