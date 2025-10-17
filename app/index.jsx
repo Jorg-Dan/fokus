@@ -1,37 +1,36 @@
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { ActionButton } from "../components/ActionButton";
 import { FokusButton } from "../components/FokusButton";
 import { Timer } from "../components/Timer";
-
-
-const pomodoro = [
-  {
-    id: "focus",
-    initialValue: 25,
-    image: require('./foco.png'),
-    display: "foco",
-  },
-  {
-    id: "short",
-    initialValue: 5,
-    image: require('./curto.png'),
-    display: "Pausa curta",
-  },
-  {
-    id: "long",
-    initialValue: 15,
-    image: require('./longo.png'),
-    display: "Pausa longa",
-  },
-];
+import { pomodoro } from "../utils/pomodoro";
 
 export default function Index() {
 
 
 
     const [timeType, setTimeType] = useState(pomodoro[0])
+    const timerRef = useRef(null) /*Precisamos informar o valor atual entre os ()*/ 
 
+    /* Função reponsável por verificar o estado atual do timer(cronometro) 
+    Se tiver acontecendo algo (current), você irá pausar.
+    Se não tiver acontecendo algo (null), você irá começar.
+    */ 
+    const togglerTimer = () => { 
+      if (timerRef.current) {
+        return
+      }
+
+      
+
+      /*timerRef -> current -> id/*
+
+
+
+    }
+
+
+ 
   return (
     <View style={styles.container}>
      <Image source={timeType.image} />
@@ -49,10 +48,13 @@ export default function Index() {
           )}
         </View>
 
-        <Text style={styles.timer}>
+        {/* <Text style={styles.timer}>
           { new Date(timeType.initialValue * 1000).toLocaleTimeString("pt-br", {minute: "2-digit", second: "2-digit"}) }
-        </Text>
-        <FokusButton />
+        </Text> */}
+        <Timer totalSeconds={timeType.initialValue}/>
+        <FokusButton 
+          press={togglerTimer}
+        />
      </View>
 
      <View style={styles.footer}>
@@ -84,7 +86,7 @@ const styles = StyleSheet.create(
       borderWidth: 2,
       borderColor: '#144480',
       gap: 32,
-      
+
     },
     context: {
       flexDirection: "row",
